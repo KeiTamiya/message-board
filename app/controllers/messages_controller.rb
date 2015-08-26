@@ -1,7 +1,26 @@
 class MessagesController < ApplicationController
+  before_action :set_message, only: [:edit, :update, :destroy]
   def index
     @messages = Message.all
     @message = Message.new
+  end
+  
+  def edit
+  end
+  
+  def update
+    if @message.update(message_params)
+      # if successed, redirect to top page
+      redirect_to root_path , notice: 'メッセージを編集しました'
+    else
+      # back to the edit page when missed
+      render 'edit'
+    end
+  end
+  
+  def destroy
+    @message.destroy
+    redirect_to root_path, notice: 'メッセージを削除しました'
   end
   
   def create
@@ -10,7 +29,7 @@ class MessagesController < ApplicationController
       redirect_to root_path , notice: 'メッセージを保存しました'
     else
       # if messages can't be remembered
-      @message = Message.all
+      @messages = Message.all
       flash.now[:alert] = "メッセージの保存に失敗しました"
       render 'index'
     end
@@ -19,5 +38,8 @@ class MessagesController < ApplicationController
   private
   def message_params
     params.require(:message).permit(:name, :body)
+  end
+  def set_message
+    @message = Message.find(params[:id])
   end
 end

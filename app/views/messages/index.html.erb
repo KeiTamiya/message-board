@@ -1,13 +1,18 @@
 <div class="panel panel-default messagePanel">
-    <h1 class="h4">メッセージ一覧</h2>
+    <h1 class="h4">メッセージ一覧</h1>
     <% @messages.each do |message| %>
-    <div class="panel-group">
-        <div class="panel panel-info">
-            <div class="panel-heading"><%= message.name %></div>
-            <div class="panel-body"><p><%= message.body %></p></div>
+        <div class="panel-group">
+            <div class="panel panel-info">
+                <div class="panel-heading"><%= message.name %></div>
+                <div class="panel-body">
+                    <%= message.body %>
+                    (<%= link_to "edit" , edit_message_path(message) %>
+                     <%= link_to "destroy" , message , method: :delete, data: {confirm: '削除してもよろしいですか？' } %>
+                    )
+                </div>
+            </div>
         </div>
-    </div>
-        <% end %>
+    <% end %>
 </div>
 
 <%= render 'form' %>
