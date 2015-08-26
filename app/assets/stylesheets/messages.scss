@@ -8,9 +8,15 @@
     margin-bottom: 10px;
 }
 .messageForm{
-    padding: 10px 15px;
+    padding: 20px 15px;
 }
 .field_with_errors{
     display: inline-block;
     border: 1px solid #f00;
+}
+#messageName{
+    margin-right: 10px;
+}
+.messagePanelName{
+    margin-right: 10px;
 }
