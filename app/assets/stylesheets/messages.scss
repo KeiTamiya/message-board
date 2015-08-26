@@ -10,3 +10,7 @@
 .messageForm{
     padding: 10px 15px;
 }
+.field_with_errors{
+    display: inline-block;
+    border: 1px solid #f00;
+}
